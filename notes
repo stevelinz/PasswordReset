@@ -1,0 +1,48 @@
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/accconfirm?view=aspnetcore-6.0&tabs=netcore-cli
+
+
+dotnet user-secrets set SendGridKey <key>
+
+Successfully saved SendGridKey to the secret store.
+
+=====================================
+
+dotnet user-secrets set SendGridKey 012345
+
+Successfully saved SendGridKey to the secret store.
+
+Secret storing may not be important for us because Restore on Azure 
+
+=======================================
+dotnet add package SendGrid
+
+======================================
+
+To Implement IEmailSender, create Services/EmailSender.cs
+
+=========================================
+
+Add the following code to the Program.cs file:
+
+Add EmailSender as a transient service.
+Register the AuthMessageSenderOptions configuration instance.
+
+=================================================
+
+Exception: Null SendGridKey
+WebPWrecover.Services.EmailSender.SendEmailAsync(string toEmail, string subject, string message) in EmailSender.cs
++
+            throw new Exception("Null SendGridKey");
+
+ A security best practice is to not use production secrets in test and development. If you publish the app to Azure, set the SendGrid secrets as application settings in the Azure Web App portal. The configuration system is set up to read keys from environment variables.   
+
+ ----------------
+
+ PS D:\DEVELOPMENT\DotnetASPCLASS\__FILES\PasswordReset\WebPWrecover> dotnet user-secrets set SendGridKey 012345
+Successfully saved SendGridKey = 012345 to the secret store.
+PS D:\DEVELOPMENT\DotnetASPCLASS\__FILES\PasswordReset\WebPWrecover> 
+
+------------------
+
+
+
